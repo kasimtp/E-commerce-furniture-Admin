@@ -22,7 +22,7 @@ const Addproduct = () => {
 
   // Add product to database
   const AddProduct = async () => {
-    if (!productDetails.name || !productDetails.price || !productDetails.unit) {
+    if (!productDetails.name || !productDetails.price ) {
       alert('Please fill all the product details');
       return;
     }
@@ -37,6 +37,8 @@ const Addproduct = () => {
     formData.append('name', productDetails.name);
     formData.append('price', productDetails.price);
     // formData.append('unit', productDetails.unit);
+    
+    
 
     try {
       const response = await fetch("http://localhost:5000/api/post-product", {
@@ -45,6 +47,7 @@ const Addproduct = () => {
       });
 
       const data = await response.json();
+      console.log(data);
 
       if (response.ok) {
         alert('🎉 Product Added Successfully!');
@@ -116,6 +119,10 @@ const Addproduct = () => {
           </label>
         </div>
       </form>
+      
+  
+      
+      
 
       <button
         type="button"
