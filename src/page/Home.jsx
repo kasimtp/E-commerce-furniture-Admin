@@ -1,6 +1,6 @@
 import React from "react";
 import Addproduct from "./Addproduct";
-import ListProduct from "./ListProduct";
+import ListProduct from "./ProductList";
 import { Route, Routes } from "react-router";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";

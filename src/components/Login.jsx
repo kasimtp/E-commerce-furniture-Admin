@@ -1,157 +1,120 @@
-import  { useEffect, useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-import {toast} from "react-toastify"
-
-
-
-import { useContext } from 'react';
-
-
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useContext } from "react";
+import {AdminContext} from '../context/AdminContext'
 
 const Login = () => {
-  const [state, setState] = useState('Sign Up');
+  const [state, setState] = useState("Sign Up");
 
-  const [token, setToken] = useContext('AppContext')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('')
+  const { setToken } = useContext(AdminContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault()
+  const onsubmitHandler = async (event) => {
+    event.preventDefault();
 
     //api call
     try {
-      if(state === 'Sign Up') {
-        const {data} = await axios.post('http://localhost:5000/api/user/register',{name,password,email})
+      if (state === "Sign Up") {
+        const { data } = await axios.post(
+          "http://localhost:5000/api/user/register",
+          { name, password, email }
+        );
 
         if (data.success) {
-          localStorage.setItem('token',data.token)
-          setToken(data.token)
+          localStorage.setItem("token", data.token);
+          setToken(data.token);
         } else {
-          toast.error (data.message)
+          toast.error(data.message);
         }
       } else {
+        const { data } = await axios.post(
+          "http://localhost:5000/api/user/login",
+          { email, password }
+        );
 
-        const {data} = await axios.post('http://localhost:5000/api/user/login',{email, password})
-
-        if(data.success) {
-          localStorage.setItem('token',data.token)
-          setToken(data.token)
-        }else {
-          toast.error(data.message)
+        if (data.success) {
+          localStorage.setItem("token", data.token);
+          setToken(data.token);
+        } else {
+          toast.error(data.message);
         }
       }
-      
     } catch (error) {
-      toast.error(error.message)
-      
+      toast.error(error.message);
     }
+  };
 
-  }
-
-  useEffect(()=> {
+  useEffect(() => {
     if (token) {
-      navigate('/')
+      navigate("/");
     }
-  },[token])
+  }, [token]);
 
   return (
+    <div>
+      <form
+        onSubmit={onsubmitHandler}
+        className="min-h-[80vh] flex items-center"
+      >
+        <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5E5E5E] text-sm shadow-lg">
+          <p className="text-2xl font-semibold m-auto">
+            <span className="text-primary">{state}</span> Login
+          </p>
 
-    <form onSubmit={onSubmitHandler}>
-
-   
-
-    <div className="min-h-screen bg-gray-100 font-semibold flex items-center justify-center ">
-      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center mb-6">
-          {state === 'Sign Up' ? 'Create Account' : 'Login'}
-        </h2>
-
-        <form className="space-y-5">
-          <div>
-            <p>Please {state === 'Sign Up' ? 'Sign Up' : 'Log in'} to order now</p>
-
-            {state === 'Sign Up' && (
-              <div className="w-full">
-                <p>Full Name</p>
-                <input
-                  className="border border-zinc-300 rounded w-full p-2 mt-3"
-                  type="text"
-                  id="name"
-                  name="name"
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-            )}
-
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
+          <div className="w-full">
+            <p>Email</p>
             <input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              className="border border-[#DADADA] rounded w-full p-2 mt-1"
               type="email"
-              id="email"
-              onChange={(e)=> setEmail(e.target.value)}
-              className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="you@example.com"
+              required
             />
           </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
+          <div className="w-full">
+            <p>Password</p>
             <input
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              className="border border-[#DADADA] w-full rounded p-2 mt-1"
               type="password"
-              id="password" onChange={(e)=>setPassword(e.target.value)}
-              className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
+              required
             />
           </div>
-
-          <div className="flex justify-between items-center">
-            <div className="text-sm text-blue-600 hover:underline cursor-pointer">
-              Forgot password?
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className="bg-blue-600 text-white w-full py-2 rounded-md text-base hover:bg-blue-700 transition"
-          >
-            {state === 'Sign Up' ? 'Create Account' : 'Login'}
+          <button className="bg-primary text-white w-full py-2 rounded-md text-base">
+            Login
           </button>
 
-          {state === 'Sign Up' ? (
-            <p className="text-sm text-center">
-              Already have an account?{' '}
+          {state === "Admin" ? (
+            <p>
+              Doctor Login?{" "}
               <span
-                onClick={() => setState('Login')}
-                className="text-blue-600 hover:underline cursor-pointer"
+                className="text-primary underline cursor-pointer"
+                onClick={() => setState("Doctor")}
               >
-                Login here
+                Click here
               </span>
             </p>
           ) : (
-            <p className="text-sm text-center">
-              Create a new account?{' '}
+            <p>
+              Admin Login?{" "}
               <span
-                onClick={() => setState('Sign Up')}
-                className="text-blue-600 hover:underline cursor-pointer"
+                className="text-primary underline cursor-pointer"
+                onClick={() => setState("Admin")}
               >
                 Click here
               </span>
             </p>
           )}
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-    </form>
   );
 };
 
