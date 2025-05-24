@@ -1,21 +1,23 @@
 import React from "react";
-
-import { Outlet, Route, Routes } from "react-router";
-import Home from "./page/Home";
-
+import { Outlet } from "react-router";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
-import Login from "./components/Login";
+import ProductList from "./page/ProductList";
+import Home from './page/Home'
 
 const App = () => {
   return (
     <>
-      <main className="relative w-full">
-        <Navbar />
-        <Sidebar />
-        <Login />
-        <Outlet />
-      </main>
+      <Navbar />
+    <div className="flex min-h-screen">
+  <Sidebar className="w-[200px] shrink-0" />
+  <div className="  overflow- p-4">
+    {/* <ProductList /> */}
+    <Home/>
+    {/* <Outlet /> */}
+  </div>
+</div>
+
     </>
   );
 };

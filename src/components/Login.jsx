@@ -1,60 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useContext } from "react";
-import {AdminContext} from '../context/AdminContext'
+import { AdminContext } from "../context/AdminContext";
 
 const Login = () => {
-  const [state, setState] = useState("Sign Up");
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
-  const { setToken } = useContext(AdminContext);
-
+  const { setAtoken } = useContext(AdminContext);
   const navigate = useNavigate();
 
   const onsubmitHandler = async (event) => {
     event.preventDefault();
 
-    //api call
     try {
-      if (state === "Sign Up") {
-        const { data } = await axios.post(
-          "http://localhost:5000/api/user/register",
-          { name, password, email }
-        );
+      const { data } = await axios.post(
+        "http://localhost:5000/api/user/login",
+        { email, password }
+      );
 
-        if (data.success) {
-          localStorage.setItem("token", data.token);
-          setToken(data.token);
-        } else {
-          toast.error(data.message);
-        }
+      if (data.success) {
+        localStorage.setItem("atoken", data.token);
+
+        setAtoken(data.token);
+        toast.success("Login successful!");
       } else {
-        const { data } = await axios.post(
-          "http://localhost:5000/api/user/login",
-          { email, password }
-        );
-
-        if (data.success) {
-          localStorage.setItem("token", data.token);
-          setToken(data.token);
-        } else {
-          toast.error(data.message);
-        }
+        toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
   useEffect(() => {
-    if (token) {
+    if (setAtoken) {
       navigate("/");
     }
-  }, [token]);
+  }, [setAtoken, navigate]);
 
   return (
     <div>
@@ -63,9 +47,7 @@ const Login = () => {
         className="min-h-[80vh] flex items-center"
       >
         <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5E5E5E] text-sm shadow-lg">
-          <p className="text-2xl font-semibold m-auto">
-            <span className="text-primary">{state}</span> Login
-          </p>
+          <p className="text-2xl font-semibold m-auto text-primary">Login</p>
 
           <div className="w-full">
             <p>Email</p>
@@ -90,28 +72,6 @@ const Login = () => {
           <button className="bg-primary text-white w-full py-2 rounded-md text-base">
             Login
           </button>
-
-          {state === "Admin" ? (
-            <p>
-              Doctor Login?{" "}
-              <span
-                className="text-primary underline cursor-pointer"
-                onClick={() => setState("Doctor")}
-              >
-                Click here
-              </span>
-            </p>
-          ) : (
-            <p>
-              Admin Login?{" "}
-              <span
-                className="text-primary underline cursor-pointer"
-                onClick={() => setState("Admin")}
-              >
-                Click here
-              </span>
-            </p>
-          )}
         </div>
       </form>
     </div>

@@ -5,7 +5,7 @@
  
  const AdminContextProvider = (props) => {
    const [atoken, setAtoken] = useState(
-     localStorage.getItem("aToken") ? localStorage.getItem("aToken") : false
+     localStorage.getItem("atoken") ? localStorage.getItem("atoken") : false
    );
  
    const value = {
@@ -14,7 +14,7 @@
    };
  
    return (
-     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
+     <AdminContext.Provider value={value}>{props.children}</AdminContext.Provider>
    );
  };
  

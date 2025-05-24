@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
-import { getData } from '../utils/ProductList';
+import { deleteData, getData } from '../utils/ProductList';
 // import { baseUrl } from '../utils/api';
 
 
@@ -30,7 +30,7 @@ function ProductList() {
   };
   
   return (
-    <div className='p-5 ml-65 bg-slate-200 -mt-150 mr-10 h-auto'>
+    <div className='p-2 w-[1200px]  mr-10 h-auto'>
       <h1 className='text-2xl font-bold border-b-3 mb-4'>Product List</h1>
       <div>
         <table className='mt-5 border-2 w-full mx-auto border-collapse text-center'>
@@ -39,7 +39,7 @@ function ProductList() {
               <th className='border-2'>Products</th>
               <th className='border-2'>Title</th>
               <th className='border-2'>Price</th>
-              <th className='border-2'>Unit</th>
+              
               <th className='border-2'>Remove</th>
             </tr>
           </thead>
@@ -51,9 +51,8 @@ function ProductList() {
                 </td>
                 <td className='border-2'>{product.name}</td>
                 <td className='border-2'>{product.price}</td>
-                <td className='border-2'>{product.unit}</td>
                 <td className='border-2'>
-                  <MdDeleteOutline onClick={() => remove_product(product.id)} className='mx-auto cursor-pointer text-2xl' />
+                  <MdDeleteOutline onClick={() => remove_product(product._id)} className='mx-auto cursor-pointer text-2xl' />
                 </td>
               </tr>
             ))}

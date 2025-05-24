@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 import Login from "../components/Login";
 const Home = () => {
   return (
-    <div className="flex">
+    <div className=" ">
       
       <Routes>
       
