@@ -44,26 +44,34 @@ const Addproduct = () => {
     // formData.append('unit', productDetails.unit);
     
     
+try {
+  const response = await fetch("https://e-commerce-furniture-backend-gpxh.onrender.com/api/post-product", {
+    method: "POST",
+    body: formData,
+  });
 
-    try {
-     const response = await fetch("https://e-commerce-furniture-backend-gpxh.onrender.com/api/post-product", {
+  const contentType = response.headers.get("content-type");
 
-        method: 'POST',
-        body: formData,
-      });
+  // Check if response is JSON
+  if (contentType && contentType.includes("application/json")) {
+    const data = await response.json();
 
-      const data = await response.json();
-      console.log(data);
-
-      if (response.ok) {
-        alert('🎉 Product Added Successfully!');
-      } else {
-        alert(`❌ Failed to add product: ${data.message}`);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('❌ An error occurred. Please try again.');
+    if (response.ok) {
+      alert("🎉 Product Added Successfully!");
+    } else {
+      alert(`❌ Failed to add product: ${data.message}`);
     }
+  } else {
+    const text = await response.text(); // fallback for HTML or plain text
+    console.error("❌ Server did not return JSON:", text);
+    alert("❌ Server error. Please check backend logs or API URL.");
+  }
+
+} catch (error) {
+  console.error("Fetch Error:", error);
+  alert("❌ Network or unexpected error. Please try again.");
+}
+
   };
 
   return (
@@ -158,7 +166,7 @@ const Addproduct = () => {
         className="border border-black rounded-full text-white bg-blue-500 mt-4 p-1 flex items-center w-[170px] justify-center h-14 text-2xl gap-x-1"
       >
         <MdAdd />
-        <p className="text-lg font-semibold">Add Product</p>
+        <span><p className="text-lg font-semibold">Add Product</p></span>
       </button>
     </div>
   );
