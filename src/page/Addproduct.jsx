@@ -7,8 +7,10 @@ const Addproduct = () => {
   const [productDetails, setProductDetails] = useState({
     name: '',
     price: '',
-    unit: '',
+   
      category:"Watchs",
+     description: '', 
+
   });
 
   // Handle file upload
@@ -23,7 +25,7 @@ const Addproduct = () => {
 
   // Add product to database
   const AddProduct = async () => {
-    if (!productDetails.name || !productDetails.price || !productDetails.category ) {
+    if (!productDetails.name || !productDetails.price || !productDetails.category || !productDetails.description) {
       alert('Please fill all the product details');
       return;
     }
@@ -38,12 +40,14 @@ const Addproduct = () => {
     formData.append('name', productDetails.name);
     formData.append('price', productDetails.price);
      formData.append('category', productDetails.category);
+     formData.append('description', productDetails.description);
     // formData.append('unit', productDetails.unit);
     
     
 
     try {
-      const response = await fetch("http://localhost:5000/api/post-product", {
+     const response = await fetch("https://e-commerce-furniture-backend-gpxh.onrender.com/api/post-product", {
+
         method: 'POST',
         body: formData,
       });
@@ -96,23 +100,32 @@ const Addproduct = () => {
           <option value={"Shoes"}>Shoes</option>
           <option value={"Headset"}>Headset</option>
           <option value={"Accessories"}>Accessories</option>
+          <option value={"airpod"}>airpod</option>
+          <option value={"ledies"}>ledies</option>
           <option value={"Men's"}>Men's</option>
+          <option value={"powerbank"}>powerbank</option>
+         
         </select>
         </div>
 
 
-
-        {/* <div className="mb-3">
-          <h4 className="font-semibold pb-2">Unit:</h4>
+           <div className="mb-3">
+          <h4 className="font-semibold pb-2">description </h4>
           <input
             type="text"
-            name="unit"
-            value={productDetails.unit}
+            name="description"
+            value={productDetails.description }
             onChange={changeHandler}
-            placeholder="e.g., kg, liter"
+            placeholder="Type here.."
             className="bg-zinc-100 outline-none max-w-80 w-full py-3 px-4 border border-black rounded-md"
           />
-        </div> */}
+        </div>
+
+
+
+
+
+        
 
         <div className="mb-5">
           <input

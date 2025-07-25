@@ -9,7 +9,7 @@ const Sidebar = () => {
   return (
     <div className=" flex flex-col space-y-12 pt-[100px]  h-screen  p-4 shadow-lg">
       <div>
-        <button onClick={() => navigate('/Add-product' ) } 
+        <button onClick={() => navigate('/add-product' ) } 
         
          className="w-[190px] h-[60px] mb-4 p-3 bg-blue-500 text-black rounded hover:bg-blue-600">
           <p className="  cursor-pointer text-white  gap-x-2 text-[23px] items-center flex"> <IoAddCircleOutline />
@@ -18,7 +18,7 @@ const Sidebar = () => {
       </div>
 
       <div>
-        <button onClick={() => navigate('/Product-List')} 
+        <button onClick={() => navigate('/product-List')} 
         
          className="w-[190px] h-[60px] mb-4 p-3 bg-blue-500 text-black rounded hover:bg-blue-600">
           <p className="  cursor-pointer text-white  gap-x-2 text-[23px] items-center flex"> <FaClipboardList />
