@@ -71,7 +71,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
-import { deleteData, getData } from '../utils/ProductList';
+import { deleteData, getData } from '../utils/ProductList.js';
 
 function ProductList() {
   const [allproducts, setAllproducts] = useState([]);
