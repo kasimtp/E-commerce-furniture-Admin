@@ -45,10 +45,11 @@ const Addproduct = () => {
     
     
 try {
-  const response = await fetch("https://e-commerce-furniture-backend-gpxh.onrender.com/post-products", {
-    method: "POST",
+  const response = await fetch("https://e-commerce-furniture-backend-gpxh.onrender.com/api/post-product", {    
+    method: "POST",  
     body: formData,
   });
+// console.log(formData.productDetails);
 
   const contentType = response.headers.get("content-type");
 
@@ -71,6 +72,9 @@ try {
   console.error("Fetch Error:", error);
   alert("❌ Network or unexpected error. Please try again.");
 }
+
+
+
 
   };
 
