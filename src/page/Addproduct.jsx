@@ -45,7 +45,7 @@ const Addproduct = () => {
     
     
 try {
-  const response = await fetch("https://e-commerce-furniture-backend-gpxh.onrender.com/api/post-product", {
+  const response = await fetch("https://e-commerce-furniture-backend-gpxh.onrender.com/post-products", {
     method: "POST",
     body: formData,
   });
