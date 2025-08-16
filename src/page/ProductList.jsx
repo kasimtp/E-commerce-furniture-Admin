@@ -146,6 +146,7 @@ function ProductList() {
               <th className='border-2 px-12'>Title</th>
               <th className='border-2 px-12'>Price</th>
               <th className='border-2 px-12'>Description</th>
+               <th className='border-2 px-12'>Categories</th>
               <th className='border-2 px-12'>Remove</th>
             </tr>
           </thead>
@@ -158,6 +159,7 @@ function ProductList() {
                 <td className='border-2 text-2xl  font-semibold px-12  bg-amber-000 '>{product.name}</td>
                 <td className='border-2  text-2xl font-semibold px-12'>{product.price}</td>
                 <td className='border-2  text-2xl font-semibold px-12'>{product.description}</td>
+                 <td className='border-2  text-2xl font-semibold px-12'>{product.category}</td>
                 <td className='border-2  text-2xl font-semibold px-12'>
                   <MdDeleteOutline
                     onClick={() => remove_product(product._id)}

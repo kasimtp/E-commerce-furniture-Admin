@@ -111,11 +111,12 @@ try {
           <option value={"Watchs"}>Watchs</option>
           <option value={"Shoes"}>Shoes</option>
           <option value={"Headset"}>Headset</option>
-          <option value={"More items"}>Accessories</option>
+          <option value={"Accessories"}>Accessories</option>
           <option value={"airpod"}>airpod</option>
           <option value={"ledies"}>ledies</option>
           <option value={"Men's"}>Men's</option>
           <option value={"powerbank"}>powerbank</option>
+          <option value={"More items"}>More items</option>
          
         </select>
         </div>
