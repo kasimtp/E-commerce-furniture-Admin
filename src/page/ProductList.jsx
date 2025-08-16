@@ -136,32 +136,32 @@ function ProductList() {
   };
 
   return (
-    <div className='p-2 w-[1200px] mr-10 h-auto'>
+    <div className='p-2 w-[2800px] mr-10 h-auto'>
       <h1 className='text-2xl font-bold border-b-3 mb-4'>Product List</h1>
       <div>
-        <table className='mt-5 border-2 w-full mx-auto border-collapse text-center'>
+        <table className='mt-5  border-2 w-full mx-auto border-collapse text-center'>
           <thead>
-            <tr className='bg-slate-300'>
-              <th className='border-2'>Products</th>
-              <th className='border-2'>Title</th>
-              <th className='border-2'>Price</th>
-              <th className='border-2'>Description</th>
-              <th className='border-2'>Remove</th>
+            <tr className='bg-slate-300 text-3xl '>
+              <th className='border-2 px-12'>Products</th>
+              <th className='border-2 px-12'>Title</th>
+              <th className='border-2 px-12'>Price</th>
+              <th className='border-2 px-12'>Description</th>
+              <th className='border-2 px-12'>Remove</th>
             </tr>
           </thead>
           <tbody>
             {allproducts.map((product, index) => (
               <tr key={index}>
-                <td className='border-2'>
-                  <img src={product.image} className='h-20 w-20 mx-auto' />
+                <td className='border-2 '>
+                  <img src={product.image} className='h-40 w-40 mx-auto' />
                 </td>
-                <td className='border-2'>{product.name}</td>
-                <td className='border-2'>{product.price}</td>
-                <td className='border-2'>{product.description}</td>
-                <td className='border-2'>
+                <td className='border-2 text-2xl  font-semibold px-12  bg-amber-000 '>{product.name}</td>
+                <td className='border-2  text-2xl font-semibold px-12'>{product.price}</td>
+                <td className='border-2  text-2xl font-semibold px-12'>{product.description}</td>
+                <td className='border-2  text-2xl font-semibold px-12'>
                   <MdDeleteOutline
                     onClick={() => remove_product(product._id)}
-                    className='mx-auto cursor-pointer text-2xl'
+                    className='mx-auto cursor-pointer text-6xl'
                   />
                 </td>
               </tr>

@@ -82,36 +82,36 @@ try {
     <div className="p-8 box-border w-full rounded-sm mt-4 lg:m-7">
       <form>
         <div className="mb-3">
-          <h4 className="font-semibold pb-2">Product title:</h4>
+          <h4 className="  text-5xl  font-sans capitalize  font-semibold px-12 pb-8">Product title:</h4>
           <input
             type="text"
             name="name"
             value={productDetails.name}
             onChange={changeHandler}
             placeholder="Type here.."
-            className="bg-[#f0f2f5] outline-none max-w-80 w-full py-3 px-4 border border-black rounded-md"
+            className="bg-[#f0f2f5] text-4xl outline-none w-[900px] h-32 py-3 px-4 border border-black rounded-md"
           />
         </div>
 
         <div className="mb-3">
-          <h4 className="font-semibold pb-2">Price:</h4>
+          <h4 className="font-semibold  text-4xl pb-10">Price:</h4>
           <input
             type="text"
             name="price"
             value={productDetails.price}
             onChange={changeHandler}
             placeholder="Type here.."
-            className="bg-zinc-100 outline-none max-w-80 w-full py-3 px-4 border border-black rounded-md"
+            className="bg-zinc-100 text-4xl outline-none w-[900px] h-32 py-3 px-4 border border-black rounded-md"
           />
         </div>
 
         <div className="mb-3">
-          <h4 className="font-semibold pb-2">category</h4>
-           <select value={productDetails.category} onChange={changeHandler} name="category" id="" className="bg-primary ring-1 ring-slate-900/20 medium-16 rounded-sm outline-none">
+          <h4 className="font-semibold pb-10 text-4xl">category</h4>
+           <select value={productDetails.category} onChange={changeHandler} name="category" id="" className="bg-primary ring-1 ring-slate-900/20 medium-16 text-3xl pb-8 rounded-sm outline-none">
           <option value={"Watchs"}>Watchs</option>
           <option value={"Shoes"}>Shoes</option>
           <option value={"Headset"}>Headset</option>
-          <option value={"Accessories"}>Accessories</option>
+          <option value={"More items"}>Accessories</option>
           <option value={"airpod"}>airpod</option>
           <option value={"ledies"}>ledies</option>
           <option value={"Men's"}>Men's</option>
@@ -122,14 +122,14 @@ try {
 
 
            <div className="mb-3">
-          <h4 className="font-semibold pb-2">description </h4>
+          <h4 className="font-semibold pb-10 text-4xl">description </h4>
           <input
             type="text"
             name="description"
             value={productDetails.description }
             onChange={changeHandler}
             placeholder="Type here.."
-            className="bg-zinc-100 outline-none max-w-80 w-full py-3 px-4 border border-black rounded-md"
+            className="bg-zinc-100  text-3xl outline-none max-w-80 w-full py-3 px-4 border border-black rounded-md"
           />
         </div>
 
@@ -139,20 +139,20 @@ try {
 
         
 
-        <div className="mb-5">
+        <div className="pb-10  text-4xl  w-[900px] h-32">
           <input
             type="file"
             id="fileInput"
             accept="image/*"
             onChange={imageHandler}
-            className="hidden"
+            className="hidden "
           />
 
           <label
             htmlFor="fileInput"
             className="flex mt-4 flex-col items-center justify-center w-32 h-32 border-2 border-gray-300 rounded-lg bg-white hover:bg-gray-100 transition duration-200 cursor-pointer"
           >
-            <FaCloudUploadAlt className="text-gray-400 text-3xl mb-2" />
+            <FaCloudUploadAlt className="text-gray-400   w-[900px] h-62 text-3xl mb-2" />
             <span className="text-gray-500">
               {image ? image.name : 'Upload'}
             </span>
@@ -167,10 +167,10 @@ try {
       <button
         type="button"
         onClick={AddProduct}
-        className="border border-black rounded-full text-white bg-blue-500 mt-4 p-1 flex items-center w-[170px] justify-center h-14 text-2xl gap-x-1"
+        className="border border-black   w-[400px] h-32 rounded-lg text-white bg-blue-500 mt-4 p-1 flex items-center justify-center  text-6xl gap-x-1"
       >
         <MdAdd />
-        <span><p className="text-lg font-semibold">Add Product</p></span>
+        <span><p className="font-semibold text-4xl">Add Product</p></span>
       </button>
     </div>
   );
